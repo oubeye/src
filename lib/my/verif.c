@@ -28,7 +28,7 @@ int is_low(char *str)
 int is_int(char *str)
 {
     for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] > '9' && str[i] < '0')
+        if (str[i] > '9' || str[i] < '0')
             return 1;
     }
     return 0;

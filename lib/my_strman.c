@@ -7,14 +7,6 @@
 
 #include "my.h"
 
-int my_strlen(char *str)
-{
-    int i = 0;
-
-    for (; str[i] != '\0'; i++);
-    return i;
-}
-
 void my_strcpy(char *dest, char *src)
 {
     int i = 0;
@@ -78,4 +70,33 @@ int str_int(char *str)
         val += ((int)str[i] - 48);
     }
     return val;
+}
+
+static int str_depth(char *str, char c)
+{
+    int x = 1;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == '\t' || str[i] == c)
+            x++;
+    }
+    return x;
+}
+
+char **str_arr(char *src, char c)
+{
+    char **dest;
+    int depth = str_depth(src, c);
+    int len;
+    int start = 0;
+
+    dest = malloc(sizeof(char *) * (depth + 1));
+    for (int i = 0; i < depth; i++) {
+        len = my_strclen(src, c, start);
+        dest[i] = malloc(sizeof(char) * (len + 1));
+        my_strseg_dup(dest[i], src, start, len);
+        start += len + 1;
+    }
+    dest[depth] = NULL;
+    return dest;
 }

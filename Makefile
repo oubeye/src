@@ -5,15 +5,7 @@
 ## lib
 ##
 
-SRC	=	my_put.c	\
-		my_strman.c	\
-		verif.c	\
-		my_len.c	\
-		my_strval.c	\
-		my_adstrman.c	\
-		my_advencelen.c	\
-		file_size.c	\
-		my_convert.c
+SRC	=	my_exec.c
 
 SRCO	=	./tests/test.c
 
@@ -21,18 +13,18 @@ SRCT	=	./tests/test_mylib.c
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -I../../include/
+CFLAGS	=	-Wall -Wextra -I./include
 
 NAMETEST	=	test
 
 NAMEO	=	t
 
-NAME	=	libmy.a
+NAME	=	my_sudo
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	ar rc $(NAME) $(OBJ)
+	gcc -o $(NAME) $(OBJ) $(CFLAGS)
 
 test_run:	fclean $(NAMETEST)
 			make fclean
@@ -56,4 +48,21 @@ clean:
 fclean: clean
 	rm -f $(NAME) $(NAMETEST) $(NAMEO)
 
+sclean:	fclean
+	find -iname "*~" -delete -or -iname "#*#" -delete
+	clear
+
 re:	fclean all
+
+cods:	sclean
+	coding-style . .
+	clear
+	cat coding-style-reports.log
+
+push:	cods
+	git status
+
+srch:
+	@echo "what do you need to search ? :"
+	@read TO_FIND; \
+	grep $$TO_FIND $(SRC) include/*

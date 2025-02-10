@@ -12,9 +12,7 @@
     #define NOT_EMPTY FST != NULL || LST != NULL
 
 typedef struct info_s {
-    int id;
-    char *type;
-    char *name;
+    void *data;
     struct info_s *next;
     struct info_s *prev;
 } node_t;
@@ -25,7 +23,7 @@ typedef struct gll_s {
     node_t *last;
 } gll_t;
 
-node_t *create_node(char *, char *, int);
+node_t *create_node(void *);
 gll_t *create_list(void);
 
 gll_t *add_list(node_t *, gll_t *);

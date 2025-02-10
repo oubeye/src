@@ -18,7 +18,7 @@
 
 gll_t *create_list(void)
 {
-    gll_t *list = malloc(sizeof(gll_t *));
+    gll_t *list = malloc(sizeof(gll_t));
 
     list->first = NULL;
     list->last = NULL;
@@ -26,20 +26,13 @@ gll_t *create_list(void)
     return list;
 }
 
-//1
-node_t *create_node(char *type, char *name, int nbr)
+node_t *create_node(void *data)
 {
     node_t *nw_node = (node_t *)malloc(sizeof(struct info_s));
 
-    nw_node->type = malloc(sizeof(char) * my_strlen(type) + 1);
-    if (!nw_node->type)
+    if (!nw_node)
         return NULL;
-    my_strcpy(nw_node->type, type);
-    nw_node->name = malloc(sizeof(char) * my_strlen(name) + 1);
-    if (!nw_node->name)
-        return NULL;
-    my_strcpy(nw_node->name, name);
-    nw_node->id = nbr;
+    nw_node->data = data;
     nw_node->next = NULL;
     nw_node->prev = NULL;
     return nw_node;

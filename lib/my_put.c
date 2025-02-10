@@ -21,10 +21,12 @@ void my_putstr(char *str)
 
 int my_perror(char *str)
 {
+    char c = '\n';
     int len = 0;
 
     for (; str[len] != '\0'; len++);
     write(2, str, len);
+    write(2, &c, 1);
     return 84;
 }
 

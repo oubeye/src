@@ -25,19 +25,10 @@ int is_low(char *str)
     return 0;
 }
 
-int ver_type(char *str)
-{
-    if (my_strcmp("ACTUATOR", str) == 0 ||
-    my_strcmp("DEVICE", str) == 0 || my_strcmp("PROCESSOR", str) == 0 ||
-    my_strcmp("SENSOR", str) == 0 || my_strcmp("WIRE", str) == 0)
-        return 0;
-    return 1;
-}
-
 int is_int(char *str)
 {
     for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] > '9' && str[i] < '0')
+        if (str[i] > '9' || str[i] < '0')
             return 1;
     }
     return 0;

@@ -14,7 +14,7 @@ SRCT	=	./tests/test_mylib.c
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -I./grph_include -Llib/my -lmy
+CFLAGS	=	-Wall -Wextra -I./include -Llib/my -lmy
 
 CGRPHFLAGS	=	-lcsfml-graphics -lcsfml-system -lcsfml-window
 
