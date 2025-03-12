@@ -31,3 +31,13 @@ void my_revstr(char *dest, char *src)
     }
     dest[len + 1] = '\0';
 }
+
+int my_strncmp(char *s1, char *s2, int len, int start)
+{
+    int cmp = 0;
+
+    for (int i = 0; i < len; i++) {
+        cmp += (s1[i + start] - s2[i + start]);
+    }
+    return cmp;
+}

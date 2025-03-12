@@ -91,9 +91,13 @@ char **str_arr(char *src, char c)
     int start = 0;
 
     dest = malloc(sizeof(char *) * (depth + 1));
+    if (dest == NULL)
+        return NULL;
     for (int i = 0; i < depth; i++) {
         len = my_strclen(src, c, start);
         dest[i] = malloc(sizeof(char) * (len + 1));
+        if (dest[i] == NULL)
+            return NULL;
         my_strseg_dup(dest[i], src, start, len);
         start += len + 1;
     }

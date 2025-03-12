@@ -5,15 +5,7 @@
 ## lib
 ##
 
-SRC	=	my_put.c	\
-		my_strman.c	\
-		verif.c	\
-		my_len.c	\
-		my_strval.c	\
-		my_adstrman.c	\
-		my_advencelen.c	\
-		file_size.c	\
-		my_convert.c
+SRC	=	main.c
 
 SRCO	=	./tests/test.c
 
@@ -21,18 +13,19 @@ SRCT	=	./tests/test_mylib.c
 
 OBJ	=	$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -I../../include/
+CFLAGS	=	-Wall -Wextra -L./lib/my -lmy -I./include
 
 NAMETEST	=	test
 
 NAMEO	=	t
 
-NAME	=	libmy.a
+NAME	=	my_exec
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
-	ar rc $(NAME) $(OBJ)
+	cd lib/my && make
+	gcc -o $(NAME) $(OBJ) $(CFLAGS)
 
 test_run:	fclean $(NAMETEST)
 			make fclean
@@ -50,10 +43,37 @@ $(NAMEO):	$(NAME)
 	make fclean
 
 clean:
+	cd lib/my && make clean
 	rm -f $(OBJ)
 	rm -f *.gc*
 
+sclear:	clean
+	find -iname "*~" -delete -or -iname "#*#" -delete
+	clear
+
 fclean: clean
+	cd lib/my && make fclean
 	rm -f $(NAME) $(NAMETEST) $(NAMEO)
 
+sclean:	fclean
+	find -iname "*~" -delete -or -iname "#*#" -delete
+	clear
+
 re:	fclean all
+
+cods:	sclean
+	coding-style . .
+	clear
+	cat coding-style-reports.log
+	@rm -f coding-style-reports.log
+
+push:	cods
+	git status
+
+srch:
+	@echo "what do you need to search ? :"
+	@read TO_FIND; \
+	grep $$TO_FIND $(SRC) include/*
+
+tsk:
+	@grep -n 'TODO:' $(SRC) include/*

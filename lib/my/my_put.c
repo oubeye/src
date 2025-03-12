@@ -21,12 +21,10 @@ void my_putstr(char *str)
 
 int my_perror(char *str)
 {
-    char c = '\n';
     int len = 0;
 
     for (; str[len] != '\0'; len++);
     write(2, str, len);
-    write(2, &c, 1);
     return 84;
 }
 
@@ -44,4 +42,12 @@ void my_put_nbr(int nbr)
     if (s != 0)
         my_put_nbr(s);
     my_putchar(e + '0');
+}
+
+void my_putarr(char **arr, char c)
+{
+    for (int i = 0; arr[i]; i++) {
+        my_putchar((i > 0 ? c : '\0'));
+        my_putstr(arr[i]);
+    }
 }

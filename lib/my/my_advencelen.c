@@ -24,3 +24,13 @@ int my_intlen(int nbr)
         nbr /= 10;
     return i;
 }
+
+int my_arrlen(char **arr)
+{
+    int i = 0;
+
+    for (int x = 0; arr[x]; x++) {
+        i += my_strlen(arr[x]);
+    }
+    return i;
+}

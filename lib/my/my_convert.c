@@ -13,6 +13,8 @@ char *uint_str(unsigned int nbr)
     char tmp[len + 1];
     char *num = malloc(sizeof(char) * len + 1);
 
+    if (num == NULL)
+        return NULL;
     for (int i = 0; i < len; i++) {
         tmp[i] = (nbr % 10) + '0';
         nbr /= 10;
