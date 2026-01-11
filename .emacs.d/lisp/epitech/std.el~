@@ -90,6 +90,13 @@
                          ("gnu" . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
 
+;;configure haskell
+(use-package haskell-mode
+  :ensure t
+  :mode ("\\.hs\\'" "\\.lhs\\'")
+  :hook ((haskell-mode . interactive-haskell-mode)
+         (haskell-mode . subword-mode)))
+
 ;;Ensure use-package is installed
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
