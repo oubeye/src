@@ -5,9 +5,9 @@
 ## a Makefile for Haskell project
 ##
 
-SRCFILES	=	DoOp.hs
+SRCFILES	=	files.cpp
 
-MAIN	=	Main.hs
+MAIN	=	Main.cpp
 
 SRCDIR	=	src
 
